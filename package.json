@@ -2,8 +2,9 @@
   "name": "tangordito",
   "version": "0.0.1",
   "description": "webApp to calculate the body mass index given the mass and height of the user",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node bin/www",
     "test": "standard && jasmine"
   },
   "repository": {
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "jasmine": "^2.5.3",
+    "morgan": "^1.7.0",
     "standard": "^8.6.0"
   }
 }
