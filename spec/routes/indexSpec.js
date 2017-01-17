@@ -12,7 +12,6 @@ describe('Endpoints', function () {
     })
     it('should response with an empty body', function (done) {
       http.get(baseURL, function (response) {
-        console.log(Object.keys(response))
         expect(response.body).not.toBeDefined()
         done()
       })

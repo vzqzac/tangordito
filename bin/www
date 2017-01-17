@@ -1,13 +1,22 @@
 const app = require('../app')
 const http = require('http')
+const Sequelize = require('sequelize')
+var models = require('../models')
 
 let port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
 
+
+
 let server = http.createServer(app)
 
-server.listen(port)
-server.on('error', onError)
+models.sequelize.sync().then(function() {
+  server.listen(port, function(error) {
+    if (error) throw Error(error)
+    console.log('Listening at: ' + port)
+  })
+  server.on('error', onError)
+})
 
 function normalizePort (val) {
   let port = parseInt(val, 10)
