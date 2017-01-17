@@ -1,5 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  if user.length
+    p Hello #{user.username}!
+    p
+      Your BMI according to the
+      a(href='https://en.wikipedia.org/wiki/Body_mass_index#Categories') standard
+    p Fill the form to check your new BMI
+  form(method="post")
+    p
+      label(for="weight") Your weight:
+      input(type="number", name="weight")
+    p
+      label(for="height") Your height:
+      input(type="number", name="height")
+    p
+      input(type="submit", value="Calculate")

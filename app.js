@@ -8,6 +8,9 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('passport')
 const router = require('./routes/index')
+const LocalStrategy = require('passport-local').Strategy
+const models = require('./models')
+
 
 const app = express()
 
@@ -22,6 +25,28 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
+
+// Auth
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(
+  function (username, password, done) {
+    models.User.findOne({where: {username: username}}).then(function (user) {
+      if (user.validatePassword(password, user)) {
+        return done(null, user)
+      }
+      return done(null, false)
+    }).catch(error => done(error))
+  }
+))
+passport.serializeUser(function(user, done) {
+  done(null, user.id)
+})
+passport.deserializeUser(function (id, done) {
+  models.User.findById(id).then(function (user) {
+    done(null, user)
+  }).catch(e => done(e))
+})
 
 // Front
 app.use(express.static(path.join(__dirname, 'public')))
