@@ -1,18 +1,20 @@
 extends layout
 
 block content
-  if user.length
+  if user && bmi
     p Hello #{user.username}!
     p
-      Your BMI according to the
+      Your BMI according to the#{' '}
       a(href='https://en.wikipedia.org/wiki/Body_mass_index#Categories') standard
+      = ' ' + bmi + ' '
+    p It is in the #{categoryName} category
     p Fill the form to check your new BMI
   form(method="post")
     p
       label(for="weight") Your weight:
-      input(type="number", name="weight")
+      input(type="text", name="weight")
     p
       label(for="height") Your height:
-      input(type="number", name="height")
+      input(type="text", name="height")
     p
       input(type="submit", value="Calculate")

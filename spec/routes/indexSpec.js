@@ -4,15 +4,9 @@ const baseURL = 'http://localhost:3000'
 
 describe('Endpoints', function () {
   describe('GET /', function () {
-    it('should response with a 200 status code', function (done) {
+    it('should redirect to login', function (done) {
       http.get(baseURL, function (response) {
-        expect(response.statusCode).toBe(200)
-        done()
-      })
-    })
-    it('should response with an empty body', function (done) {
-      http.get(baseURL, function (response) {
-        expect(response.body).not.toBeDefined()
+        expect(response.statusCode).toBe(302)
         done()
       })
     })

@@ -1,3 +1,4 @@
+'user strict'
 const express = require('express')
 const logger = require('morgan')
 const path = require('path')
@@ -10,7 +11,6 @@ const passport = require('passport')
 const router = require('./routes/index')
 const LocalStrategy = require('passport-local').Strategy
 const models = require('./models')
-
 
 const app = express()
 
@@ -39,7 +39,7 @@ passport.use(new LocalStrategy(
     }).catch(error => done(error))
   }
 ))
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id)
 })
 passport.deserializeUser(function (id, done) {

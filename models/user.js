@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     feezeTable: true,
     hooks: {
       beforeCreate: function (user) {
-        user.password = generateHash(user.password)
+        user.password = user.generateHash(user.password)
       }
     },
     instanceMethods: {
