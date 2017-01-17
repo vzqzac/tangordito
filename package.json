@@ -1,0 +1,19 @@
+{
+  "name": "tangordito",
+  "version": "0.0.1",
+  "description": "webApp to calculate the body mass index given the mass and height of the user",
+  "main": "server.js",
+  "scripts": {
+    "test": "standard && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VzqzAc/tangordito.git"
+  },
+  "author": "Omar Vazquez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VzqzAc/tangordito/issues"
+  },
+  "homepage": "https://github.com/VzqzAc/tangordito#readme"
+}
