@@ -51,11 +51,6 @@ passport.deserializeUser(function (id, done) {
 // Front
 app.use(express.static(path.join(__dirname, 'public')))
 
-// Handle user session
-app.use(session({secret: 'imma secret'}))
-app.use(passport.initialize())
-app.use(passport.session())
-
 // Custom routes
 router(app)
 

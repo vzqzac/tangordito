@@ -9,12 +9,10 @@ module.exports = function (app) {
   router.post('/', function (req, res) {
     if (!req.user) { return res.redirect('/login') }
     if (!req.body) { return res.render('index', { error: 'An empty form' }) }
-    let bmi
-    try {
-      bmi = +req.body.weight / Math.pow(+req.body.height, 2)
-    } catch (e) {
-      return res.render('index', {error: 'Wrong values in form'})
-    }
+    let bmi = +req.body.weight / Math.pow(+req.body.height, 2)
+
+    if (isNaN(bmi)) return res.render('index', {error: 'Wrong values in form'})
+
     let categoryName = bmi < 15.0 ? 'Very severely underweight'
       : bmi < 16 ? 'Severely underweight'
       : bmi < 18.5 ? 'Underweight'
